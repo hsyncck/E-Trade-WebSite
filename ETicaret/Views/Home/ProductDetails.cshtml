@@ -1,0 +1,69 @@
+﻿@using ETicaret.Entity
+@model Product
+<div class="row">
+    <div id="sidebar" class="span3">
+        <div class="well well-small">
+            <ul class="nav nav-list">
+                @Html.Action("_CategoryList", "Category")
+                <li style="border:0"> &nbsp;</li>
+                @Html.Action("Summary", "Cart")
+            </ul>
+        </div>
+
+       
+        @Html.Action("_FeaturedProductList", "Home")
+
+    </div>
+    <div class="span9">
+        <ul class="breadcrumb">
+            <li><a href="/Home/Index">Anasayfa</a> <span class="divider">/</span></li>
+            <li><a href="/Home/Product">Ürünler</a> <span class="divider">/</span></li>
+            <li class="active">Ürün Detay</li>
+        </ul>
+        <div class="well well-small">
+            <div class="row-fluid">
+                <div class="span5">
+                    <div id="myCarousel" class="carousel slide cntr">
+                        
+                            <div class="item active">
+                                <a href="#"> <img style="width: 100%; max-width: 246px; max-height: 335px; min-height: 335px; min-width: 246px "<img src="~/Content/image/@Model.Image" alt="" style="width:100%"></a>
+                            </div>
+                            
+                      
+                    </div>
+                </div>
+                <div class="span7">
+                    <h3>@Model.Name</h3>
+                    <hr class="soft" />
+                    @using (Html.BeginForm("AddToCart", "Cart", new { @class = "form-horizontal qtyFrm" }))
+                    {
+                        @Html.HiddenFor(i => i.Id)
+                        <div class="control-group">
+                            <label class="control-label"><span><a class="btn btn-primary">@Model.Price ₺</a></span></label>
+
+                        </div>
+
+                        <hr class="soft" />
+                        <h4>@Model.Stock Adet Kaldı <a class="btn-danger">Acelet Et!!!</a></h4>
+
+                        <hr class="soft" />
+                        <p>
+                            <button type="submit" class="shopBtn"><span class=" icon-shopping-cart"></span> Sepete Ekle</button>
+                        </p>
+                        <hr class="soft" />
+                        <pre><h6 style="text-align:justify"><u>ÜRÜN BİLGİLERİ</u></h6>
+<a>@Model.Description</a></pre>
+
+
+
+                    }
+                </div>
+            </div>
+            <hr class="softn clr" />
+
+
+            
+
+        </div>
+    </div>
+</div>
